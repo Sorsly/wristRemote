@@ -1,0 +1,9 @@
+PIN 	NRF24L01 	Arduino UNO 	ATtiny25/45/85 [0] 	
+1 		GND 		GND 			pin 4 	
+2 		VCC 		3.3V 			pin 8 	
+3 		CE 			digIO 7 		pin 2 	
+4 		CSN 		digIO 8 		pin 3 	
+5 		SCK 		digIO 13 		pin 7 	
+6 		MOSI 		digIO 11 		pin 6 	
+7 		MISO 		digIO 12 		pin 5 	
+8 		IRQ 		- 				- 		
