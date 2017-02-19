@@ -1,0 +1,2 @@
+for multidimensional arrays, arduino only wants column definition, not row definition. will throw error otherwise
+	https://forum.arduino.cc/index.php?topic=220385.0

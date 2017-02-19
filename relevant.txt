@@ -1,0 +1,4 @@
+http://tmrh20.github.io/RF24/
+	#library documentation for radio
+https://playground.arduino.cc/InterfacingWithHardware/Nrf24L01
+	#links to all the libraries relevant to radio
