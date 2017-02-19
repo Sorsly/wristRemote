@@ -1,2 +1,17 @@
 for multidimensional arrays, arduino only wants column definition, not row definition. will throw error otherwise
 	https://forum.arduino.cc/index.php?topic=220385.0
+
+testing procedure
+	arduino program requires sudo
+	radios must be assigned distinct ids
+	any test code requires the 4 header files:
+		nRF24L01.h
+		RF24_config.h
+		RF24.cpp
+		RF24.h
+
+testing notes
+	nRF24L01+ devices appear consistent most of the time, but the receiving end sometimes completely cuts out if slightly nudged. May have to do with the yellow uno, or it could be the transceiver itself, or maybe loose wires, etc.
+	connection does not appear to be greatly affected by distance over a span of 3 feet or so
+	trapping transceiver partially in altoid tin doesn't affect ping
+
