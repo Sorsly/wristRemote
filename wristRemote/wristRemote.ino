@@ -7,11 +7,24 @@
   This example code is in the public domain.
 */
 
+#include <SoftwareSerial.h>
+
+//software serial for the attiny85
+#define rxPin 3
+#define txPin 4
+
+SoftwareSerial t85Serial(rxPin, txPin);
+
 //pushbutton values (mV) based on resistors
-int pb0 = 151;
-int pb1 = 326;
-int pb2 = 538;
-int pb3 = 633;
+/* all combinations tested; all push buttons
+ *  are unique/no interference. If resistance
+ *  values are changed, make sure that values
+ *  are as evenly spread as possible
+ */
+int pb0 = 528;  //1000  ohm
+int pb1 = 349;  //2200  ohm
+int pb2 = 268;  //3300  ohm
+int pb3 = 212;  //4700  ohm
 
 //setting values
 int flag;
@@ -24,20 +37,19 @@ unsigned long thrDbnce = 50;
 //time values (millis())
 unsigned long timDbnce = 0;
 
-
-
 // the setup routine runs once when you press reset:
 void setup() {
-  // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+  // initialize t85Serial communication at 9600 bits per second:
+  t85Serial.begin(9600);
 }
 
 // the loop routine runs over and over again forever:
 void loop() {
-  // read the input on analog pin 0:
-  int pbVal = analogRead(A0);
-  
-  //Serial.println(pbVal);  //print raw sensor value
+  // read the input on analog pin 3 (ADC3)(hw pin 2):
+  int pbVal = analogRead(3);
+
+  t85Serial.print("raw sensor value: ");
+  t85Serial.print(pbVal);  //print raw sensor value
   delay(1);        // delay in between reads for stability
   
   if(pbVal > pb0 - thrErr && pbVal < pb0 + thrErr) {
@@ -48,12 +60,12 @@ void loop() {
     flag = 2;
   } else if(pbVal > pb3 - thrErr && pbVal < pb3 + thrErr) {
     flag = 3;
-  } else if(pbVal == 0) {
+  } else {
     flag = -1;
   }
 
 /*
-  if(flag != flagLast) {
+  if(flag != flagLast) {151
     timDbnce = millis();
   }
   if((millis() - timDbnce) > thrDbnce) {
@@ -63,6 +75,7 @@ void loop() {
       if(pbState == 
   }
   */
-  Serial.println(flag);
+  t85Serial.print("\tflag: ");
+  t85Serial.println(flag);
   
 }
